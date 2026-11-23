@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch API Application</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        h1 {
+            background-color: orange;
+            padding: 15px;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            width: 250px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px gray;
+            text-align: left;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #status {
+            font-size: 18px;
+            margin: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>USER DETAILS</h1>
+
+    <button onclick="fetchUsers()">Load Users</button>
+
+    <p id="status"></p>
+
+    <div id="container"></div>
+
+    <script>
+
+        async function fetchUsers() {
+
+            let container = document.getElementById("container");
+            let status = document.getElementById("status");
+
+            status.innerText = "Loading...";
+            container.innerHTML = "";
+
+            try {
+
+                let response = await fetch(
+                    "https://jsonplaceholder.typicode.com/users"
+                );
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data");
+                }
+
+                let users = await response.json();
+
+                status.innerText = "Users Loaded Successfully!";
+
+                users.forEach(function(user) {
+
+                    let card = document.createElement("div");
+
+                    card.className = "card";
+
+                    card.innerHTML = `
+                        <h2>${user.name}</h2>
+                        <p><b>ID:</b> ${user.id}</p>
+                        <p><b>Email:</b> ${user.email}</p>
+                        <p><b>Phone:</b> ${user.phone}</p>
+                        <p><b>City:</b> ${user.address.city}</p>
+                        <p><b>Company:</b> ${user.company.name}</p>
+                    `;
+
+                    container.appendChild(card);
+
+                });
+
+            }
+
+            catch (error) {
+
+                status.innerText = "Error: " + error.message;
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>
