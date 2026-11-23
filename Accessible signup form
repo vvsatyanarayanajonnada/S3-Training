@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Accessible Signup Form</title>
+</head>
+
+<body>
+
+    <h1>STUDENT SIGNUP FORM</h1>
+
+    <form id="signupForm" novalidate>
+
+        <label for="name">Full Name:</label><br>
+        <input type="text" id="name" name="name"
+               required autocomplete="name">
+        <p id="nameError" role="alert"></p>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"
+               required autocomplete="email">
+        <p id="emailError" role="alert"></p>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone"
+               required autocomplete="tel">
+        <p id="phoneError" role="alert"></p>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"
+               required autocomplete="new-password">
+        <p id="passwordError" role="alert"></p>
+
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input type="password" id="confirmPassword"
+               name="confirmPassword" required
+               autocomplete="new-password">
+        <p id="confirmPasswordError" role="alert"></p>
+
+        <button type="submit">Sign Up</button>
+
+        <p id="successMessage" role="status"></p>
+
+    </form>
+
+    <script>
+
+        let form = document.getElementById("signupForm");
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            let valid = true;
+
+            // Clear previous messages
+            document.querySelectorAll('[id$="Error"]').forEach(function(error) {
+                error.innerText = "";
+            });
+
+            document.getElementById("successMessage").innerText = "";
+
+            // Name validation
+            if (name === "") {
+                document.getElementById("nameError").innerText =
+                    "Please enter your name";
+                valid = false;
+            }
+
+            // Email validation
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                document.getElementById("emailError").innerText =
+                    "Please enter a valid email";
+                valid = false;
+            }
+
+            // Phone validation
+            if (!/^[0-9]{10}$/.test(phone)) {
+                document.getElementById("phoneError").innerText =
+                    "Enter a valid 10-digit phone number";
+                valid = false;
+            }
+
+            // Password validation
+            if (password.length < 8) {
+                document.getElementById("passwordError").innerText =
+                    "Password must contain at least 8 characters";
+                valid = false;
+            }
+
+            // Confirm password
+            if (password !== confirmPassword) {
+                document.getElementById("confirmPasswordError").innerText =
+                    "Passwords do not match";
+                valid = false;
+            }
+
+            // Final result
+            if (valid) {
+
+                document.getElementById("successMessage").innerText =
+                    "Signup successful!";
+
+                form.reset();
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
