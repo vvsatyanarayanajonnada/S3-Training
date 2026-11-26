@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f4f9;
+    color: #333;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.container h2 {
+    text-align: center;
+    color: #173b70;
+    margin-bottom: 35px;
+    font-size: 26px;
+}
+
+/* Centered Single-Column Layout */
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Product Form */
+
+.form-box {
+    width: 100%;
+    max-width: 420px;
+    background-color: white;
+    padding: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.form-box h3,
+.output h3 {
+    color: #173b70;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.row label {
+    font-weight: bold;
+    margin-bottom: 7px;
+    color: #173b70;
+}
+
+.row input {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #bbb;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none;
+}
+
+.row input:focus {
+    border-color: #1769aa;
+    box-shadow: 0 0 4px rgba(23, 105, 170, 0.3);
+}
+
+/* Button */
+
+.button-row button {
+    width: 100%;
+    background-color: #1769aa;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button-row button:hover {
+    background-color: #104c80;
+}
+
+/* Output Section (when placed below the button) */
+
+.output {
+    margin-top: 20px;
+    padding-top: 10px;
+}
+
+.output hr {
+    border: 1px solid #ddd;
+    margin: 15px 0;
+}
+
+.bill p {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 12px 5px;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+}
+
+.bill strong {
+    text-align: right;
+}
+
+.bill h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    color: #16803c;
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+
+@media (max-width: 750px) {
+    .container {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .container h2 {
+        font-size: 21px;
+    }
+}
